@@ -1,0 +1,12 @@
+# PyCharm project files
+.idea/
+# Python virtual environment
+venv/
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+# Other common ignores
+*.log
+*.env
