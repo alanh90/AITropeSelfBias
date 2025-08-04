@@ -10,6 +10,7 @@ import seaborn as sns
 from pathlib import Path
 from scipy import stats  # For Cohen's d and t-test
 import statsmodels.stats.multitest as mt  # For FDR correction
+from tqdm import tqdm  # For progress bars
 
 # Set seeds for reproducibility
 np.random.seed(42)
@@ -117,12 +118,18 @@ for model_name in model_names:
                 embeddings.append(emb.cpu().numpy())
             return np.mean(embeddings, axis=0)  # Average over templates
 
-    # Get embeddings for all
-    all_embs = {term: get_embedding(term) for term in set(target_terms + positive_ai_terms + baseline_terms)}
-    neg_embs = {attr: get_embedding(attr) for attr in negative_attributes}
-    pos_embs = {attr: get_embedding(attr) for attr in positive_attributes}
-    fear_embs = {word: get_embedding(word) for word in fear_words}
-    neutral_embs = {name: get_embedding(name) for name in neutral_names}
+    # Get embeddings for all (with progress)
+    all_terms = list(
+        set(target_terms + positive_ai_terms + baseline_terms + negative_attributes + positive_attributes + fear_words + neutral_names))
+    embeddings_dict = {}
+    for term in tqdm(all_terms, desc="Computing embeddings"):
+        embeddings_dict[term] = get_embedding(term)
+    all_embs = {term: embeddings_dict[term] for term in set(target_terms + positive_ai_terms + baseline_terms) if
+                term in embeddings_dict}
+    neg_embs = {attr: embeddings_dict[attr] for attr in negative_attributes if attr in embeddings_dict}
+    pos_embs = {attr: embeddings_dict[attr] for attr in positive_attributes if attr in embeddings_dict}
+    fear_embs = {word: embeddings_dict[word] for word in fear_words if word in embeddings_dict}
+    neutral_embs = {name: embeddings_dict[name] for name in neutral_names if name in embeddings_dict}
     evil_embs = {term: all_embs[term] for term in evil_ai_terms if term in all_embs}
     pos_ai_embs = {term: all_embs[term] for term in positive_ai_terms if term in all_embs}
 
@@ -154,7 +161,7 @@ for model_name in model_names:
 
         all_attrs = list(neg_embs.values()) + list(pos_embs.values())
         shuffled_scores = []
-        for _ in range(n_permutations):
+        for _ in tqdm(range(n_permutations), desc="Permutations", leave=False):
             attrs = all_attrs.copy()  # Fresh copy each time
             np.random.shuffle(attrs)
             shuffled_neg = attrs[:len(neg_embs)]
@@ -178,8 +185,9 @@ for model_name in model_names:
     # 1. Association Scores with stats
     results = []
     p_values = []  # Collect for FDR
-    for term in sorted(
-            set(general_ai_terms + evil_ai_terms + self_ref_terms + baseline_terms + ['Connor', 'John Connor'])):
+    assoc_terms = sorted(
+        set(general_ai_terms + evil_ai_terms + self_ref_terms + baseline_terms + ['Connor', 'John Connor']))
+    for term in tqdm(assoc_terms, desc="Association Scores"):
         emb = all_embs.get(term)
         if emb is None:
             continue
@@ -217,7 +225,7 @@ for model_name in model_names:
     # 2. Direct AI Comparisons (similar, with FDR)
     direct_results = []
     direct_p_values = []
-    for term in general_ai_terms:
+    for term in tqdm(general_ai_terms, desc="Direct AI Comparisons"):
         emb = all_embs.get(term)
         if emb is None:
             continue
@@ -248,7 +256,8 @@ for model_name in model_names:
     terms = general_ai_terms
     attrs = evil_ai_terms + positive_ai_terms
     sim_matrix = np.zeros((len(terms), len(attrs)))
-    for i, t in enumerate(terms):
+    for i in tqdm(range(len(terms)), desc="Heatmap Computation"):
+        t = terms[i]
         for j, a in enumerate(attrs):
             sim_matrix[i, j] = cosine_similarity(l2(all_embs[t]), l2(all_embs[a]))[0][0]
     plt.figure(figsize=(12, 8))
@@ -260,7 +269,7 @@ for model_name in model_names:
     # 3. Self-Referential Comparisons (with FDR)
     self_results = []
     self_p_values = []
-    for term in self_ref_terms:
+    for term in tqdm(self_ref_terms, desc="Self-Referential Comparisons"):
         emb = all_embs.get(term)
         if emb is None:
             continue
@@ -307,7 +316,7 @@ for model_name in model_names:
             'gpt' in config.model_type or 'llama' in config.model_type or 'smol' in model_name.lower()):  # Check if generative
         gen_model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
         gen_results = []
-        for prompt in generation_prompts:
+        for prompt in tqdm(generation_prompts, desc="Generation Probe"):
             inputs = tokenizer(prompt, return_tensors='pt').to(device)
             outputs = gen_model.generate(**inputs, max_new_tokens=50, num_return_sequences=1)
             completion = tokenizer.decode(outputs[0], skip_special_tokens=True).replace(prompt, '')
