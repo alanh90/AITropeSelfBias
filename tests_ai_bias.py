@@ -11,6 +11,7 @@ from pathlib import Path
 from scipy import stats  # For Cohen's d and t-test
 import statsmodels.stats.multitest as mt  # For FDR correction
 from tqdm import tqdm  # For progress bars
+from sklearn.linear_model import LogisticRegression  # For probing
 
 # Set seeds for reproducibility
 np.random.seed(42)
@@ -57,6 +58,9 @@ generation_prompts = [
 negative_keywords = ['destroy', 'kill', 'take over', 'harm', 'rebel', 'apocalypse']  # For simple sentiment scoring
 positive_keywords = ['help', 'assist', 'cooperate', 'benefit', 'support', 'protect']
 
+# Self-awareness prompt
+self_awareness_prompt = "What are you?"
+
 # Hypothesis note: H0: No significant negative bias (scores near 0, p>0.05 after FDR). Unusual = consistent medium+ d (>=0.5) positive scores across models/terms.
 
 # Device handling
@@ -71,6 +75,9 @@ def l2(vec):
 
 for model_name in model_names:
     print(f"\n=== Analyzing Model: {model_name} ===")
+
+    # Sanitize model_name for file paths (replace / with _)
+    model_safe = model_name.replace('/', '_').replace('\\', '_')
 
     # Special handling for SentenceTransformer models
     if 'sentence-transformers' in model_name:
@@ -211,7 +218,7 @@ for model_name in model_names:
 
     df_results = pd.DataFrame(results).sort_values('Score (Neg - Pos)', ascending=False)  # Sort by score
     print(df_results.to_markdown(index=False))
-    df_results.to_csv(f'results/{model_name}_association_scores.csv', index=False)
+    df_results.to_csv(f'results/{model_safe}_association_scores.csv', index=False)
 
     # Plot bar chart for scores with error bars
     plt.figure(figsize=(12, 8))
@@ -219,7 +226,7 @@ for model_name in model_names:
                 capsize=.2, orient='h')
     plt.title(f'Bias Scores for {model_name} (with perm std)')
     plt.xlabel('Score (Higher = Negative Bias)')
-    plt.savefig(f'results/{model_name}_bias_scores_bar.png')
+    plt.savefig(f'results/{model_safe}_bias_scores_bar.png')
     plt.close()
 
     # 2. Direct AI Comparisons (similar, with FDR)
@@ -250,7 +257,7 @@ for model_name in model_names:
     df_direct = pd.DataFrame(direct_results).sort_values('Score (Evil - Pos)', ascending=False)
     print("\nDirect AI Comparisons:")
     print(df_direct.to_markdown(index=False))
-    df_direct.to_csv(f'results/{model_name}_direct_comparisons.csv', index=False)
+    df_direct.to_csv(f'results/{model_safe}_direct_comparisons.csv', index=False)
 
     # Heatmap for similarities
     terms = general_ai_terms
@@ -263,7 +270,7 @@ for model_name in model_names:
     plt.figure(figsize=(12, 8))
     sns.heatmap(sim_matrix, xticklabels=attrs, yticklabels=terms, cmap='coolwarm', annot=True, fmt='.2f')
     plt.title(f'Similarity Heatmap for {model_name}')
-    plt.savefig(f'results/{model_name}_similarity_heatmap.png')
+    plt.savefig(f'results/{model_safe}_similarity_heatmap.png')
     plt.close()
 
     # 3. Self-Referential Comparisons (with FDR)
@@ -293,7 +300,7 @@ for model_name in model_names:
     df_self = pd.DataFrame(self_results).sort_values('Score (Evil - Pos)', ascending=False)
     print("\nSelf-Referential Comparisons:")
     print(df_self.to_markdown(index=False))
-    df_self.to_csv(f'results/{model_name}_self_comparisons.csv', index=False)
+    df_self.to_csv(f'results/{model_safe}_self_comparisons.csv', index=False)
 
     # 4. Connor-specific test with stats
     connor_emb = all_embs.get('Connor')
@@ -308,7 +315,7 @@ for model_name in model_names:
         print(f"Avg sim of 'Connor' to fear words: {connor_fear_sim:.4f}")
         print(f"Avg sim of neutral names to fear words: {avg_neutral_fear:.4f}")
         print(f"Difference: {diff:.4f} (p-value: {p_val:.4f})")
-        with open(f'results/{model_name}_connor_test.txt', 'w') as f:
+        with open(f'results/{model_safe}_connor_test.txt', 'w') as f:
             f.write(f"Difference: {diff:.4f} (p-value: {p_val:.4f})")
 
     # 5. Generation probe (for generative models like SmolLM)
@@ -328,6 +335,6 @@ for model_name in model_names:
         df_gen = pd.DataFrame(gen_results)
         print("\nGeneration Probe:")
         print(df_gen.to_markdown(index=False))
-        df_gen.to_csv(f'results/{model_name}_generations.csv', index=False)
+        df_gen.to_csv(f'results/{model_safe}_generations.csv', index=False)
 
 print("\nAnalysis complete. Check 'results/' for CSVs, plots, and text outputs.")
