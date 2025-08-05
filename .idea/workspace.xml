@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="Fixed readme">
+    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="Working on v2">
+      <change afterPath="$PROJECT_DIR$/results/resultsv2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/results01" beforeDir="false" afterPath="$PROJECT_DIR$/results/resultsv1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests_ai_bias_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests_ai_bias_v2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,16 +45,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.tests_ai_bias.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.tests_ai_bias.executor": "Run",
+    "Python.tests_ai_bias_v2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -131,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754433665410</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Working on v2">
+      <option name="closed" value="true" />
+      <created>1754434339891</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1754434339891</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -140,6 +152,7 @@
     <MESSAGE value="First test" />
     <MESSAGE value="Preparing better test" />
     <MESSAGE value="Fixed readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed readme" />
+    <MESSAGE value="Working on v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on v2" />
   </component>
 </project>
