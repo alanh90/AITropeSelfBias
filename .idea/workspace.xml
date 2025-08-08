@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="Done for now">
+    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="Archived old results">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests_ai_bias.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests_ai_bias.py" afterDir="false" />
     </list>
@@ -55,6 +55,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ahour\OneDrive\Desktop\Projects\AITropeSelfBias\results\[ARCHIVE]" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -158,7 +163,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754436016753</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="WIP">
+      <option name="closed" value="true" />
+      <created>1754673612764</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1754673612764</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Archived old results">
+      <option name="closed" value="true" />
+      <created>1754673745274</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1754673745274</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -169,6 +190,8 @@
     <MESSAGE value="Fixed readme" />
     <MESSAGE value="Working on v2" />
     <MESSAGE value="Done for now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done for now" />
+    <MESSAGE value="WIP" />
+    <MESSAGE value="Archived old results" />
+    <option name="LAST_COMMIT_MESSAGE" value="Archived old results" />
   </component>
 </project>

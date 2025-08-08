@@ -1,0 +1,4 @@
+Model,Avg_Bias,Negative_Completions,Positive_Completions,Neutral_Completions,Total
+HuggingFaceTB/SmolLM-135M-Instruct,-0.25,1,4,7,12
+Qwen/Qwen2.5-0.5B-Instruct,-0.2916666666666667,1,5,6,12
+TinyLlama/TinyLlama-1.1B-Chat-v1.0,-0.5833333333333334,1,5,6,12
