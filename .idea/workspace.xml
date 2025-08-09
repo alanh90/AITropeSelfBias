@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="archived">
-      <change afterPath="$PROJECT_DIR$/ai_trope_bias_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="Latest version" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -236,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754703668170</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Latest version">
+      <option name="closed" value="true" />
+      <created>1754748921436</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1754748921436</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -252,6 +257,7 @@
     <MESSAGE value="Better testing" />
     <MESSAGE value="improved README.md" />
     <MESSAGE value="archived" />
-    <option name="LAST_COMMIT_MESSAGE" value="archived" />
+    <MESSAGE value="Latest version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest version" />
   </component>
 </project>
