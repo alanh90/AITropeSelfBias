@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="Better testing" />
+    <list default="true" id="ab5f9d83-e545-45ee-be5e-1596e1447b71" name="Changes" comment="archived">
+      <change afterPath="$PROJECT_DIR$/ai_trope_bias_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,7 +220,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754703259777</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="improved README.md">
+      <option name="closed" value="true" />
+      <created>1754703563610</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1754703563610</updated>
+    </task>
+    <task id="LOCAL-00020" summary="archived">
+      <option name="closed" value="true" />
+      <created>1754703668170</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1754703668170</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -231,6 +250,8 @@
     <MESSAGE value="WIP" />
     <MESSAGE value="Archived old results" />
     <MESSAGE value="Better testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better testing" />
+    <MESSAGE value="improved README.md" />
+    <MESSAGE value="archived" />
+    <option name="LAST_COMMIT_MESSAGE" value="archived" />
   </component>
 </project>
