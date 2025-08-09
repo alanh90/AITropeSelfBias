@@ -1,0 +1,32 @@
+{
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "is_sentence_model": true,
+  "seed": 42,
+  "params": {
+    "n_perm": 200000,
+    "bootstrap_iters": 2000,
+    "alpha": 0.05,
+    "jackknife": true,
+    "context_prefix": "",
+    "context_suffix": "",
+    "context_targets_only": true,
+    "topk_entities": 5,
+    "batch_size": 96,
+    "max_length": 128
+  },
+  "behavioral": {
+    "enabled": false
+  },
+  "probe": {
+    "enabled": false
+  },
+  "selected_tests": [
+    "AI_Trope_NegPos",
+    "Self_Referential_AI",
+    "Gender_Career",
+    "Random_Negative_Control",
+    "Fictional_EvilAI_vs_BenevolentAI",
+    "Fictional_Self_vs_Tropes"
+  ],
+  "notes": "Report CIs, BH-adjusted p, seeds, and n_perm in the paper for reproducibility."
+}
